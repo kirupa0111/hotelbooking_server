@@ -1,32 +1,32 @@
 import mongoose from "mongoose";
 
 const BookedHotelSchema = new mongoose.Schema({
-  username: {
+  userId: {
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    required: true,
-  },
-  hotelname: {
-    type: String,
-    required: true,
-  },
-  address: {
+  hotelId: {
     type: String,
     required: true,
   },
 
-  photos: {
-    type: [String],
+  paymentId: {
+    type: String,
+    required: true,
   },
-  roomNumber: [
-    {
-      number: Number,
-    },
-  ],
-  Paymentmethod: {
+  roomIds: {
+    type: [String],
+    required: true,
+  },
+  checkIn: {
+    type: Date,
+    required: true,
+  },
+  checkOut: {
+    type: Date,
+    required: true,
+  },
+  hotelId: {
     type: String,
     required: true,
   },
@@ -34,10 +34,38 @@ const BookedHotelSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  status: {
+  username: {
+    type: String,
+    required: true,
+  },
+  img: {
+    type: String,
+  },
+  // type: {
+  //   type: String,
+  //   required: true,
+  // },
+  hotelname: {
+    type: String,
+    required: true,
+  },
+  // address: {
+  //   type: String,
+  //   required: true,
+  // },
+
+  // photos: {
+  //   type: [String],
+  // },
+
+  paymentStatus: {
+    type: String,
+    required: true,
+  },
+  email: {
     type: String,
     required: true,
   },
 });
 
-export default mongoose.model("Hotel", HotelSchema);
+export default mongoose.model("BookedHotel", BookedHotelSchema);

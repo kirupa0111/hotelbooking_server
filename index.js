@@ -4,10 +4,12 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
+import bookingsRoute from "./routes/bookings.js";
 import usersRoute from "./routes/users.js";
 import cookieParser from "cookie-parser";
+import createOrderRoute from "./routes/createorder.js";
 import cors from "cors";
-
+import Razorpay from "razorpay";
 const app = express();
 dotenv.config();
 
@@ -36,6 +38,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/payment", createOrderRoute);
+app.use("/api/bookings", bookingsRoute);
 
 app.use((err, req, res, next) => {
   console.log("hi i am middleware");
@@ -51,5 +55,5 @@ app.use((err, req, res, next) => {
 
 app.listen(8000, () => {
   connect();
-  console.log("connected to back end .");
+  console.log("connected to backend .");
 });

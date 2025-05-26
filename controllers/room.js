@@ -16,6 +16,7 @@ export const createRoom = async (req, res, next) => {
       next(err);
     }
     res.status(200).json(savedRoom);
+    console.log(savedRoom);
   } catch (err) {
     next(err);
   }
@@ -29,10 +30,13 @@ export const updateRoom = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedRoom);
+
+    console.log(updatedRoom);
   } catch (err) {
     next(err);
   }
 };
+
 export const updateRoomAvailability = async (req, res, next) => {
   try {
     await Room.updateOne(
@@ -50,7 +54,7 @@ export const updateRoomAvailability = async (req, res, next) => {
 };
 export const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
-  console.log(req.params.hotelid);
+  console.log(hotelId);
   try {
     await Room.findByIdAndDelete(req.params.id);
     try {

@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.js";
+import BookedHotel from "../models/BookedHotel.js";
 import Room from "../models/Room.js";
 
 export const createHotel = async (req, res, next) => {
@@ -11,6 +12,38 @@ export const createHotel = async (req, res, next) => {
     next(err);
   }
 };
+
+// booked hotel
+export const bookedHotel = async (req, res, next) => {
+  const newBookedHotel = new BookedHotel(req.body);
+
+  try {
+    const saveBookedHotel = await newBookedHotel.save();
+    console.log(saveBookedHotel);
+    res.status(200).json(saveBookedHotel);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
+export const checkBooked = async (req, res) => {
+  try {
+    const { userId, hotelId, email } = req.body;
+    const booking = await BookedHotel.findOne({
+      userId,
+      hotelId,
+    });
+    if (booking) {
+      return res.json({ alreadyBooked: true });
+    } else {
+      return res.json({ alreadyBooked: false });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 export const updateHotel = async (req, res, next) => {
   try {
     const updatedHotel = await Hotel.findByIdAndUpdate(
