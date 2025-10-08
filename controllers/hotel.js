@@ -131,3 +131,15 @@ export const getHotelRooms = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getHotelCount = async (req, res, next) => {
+  try {
+    // router.get("/count", async (req, res) => {
+    //   try {
+    const count = await Hotel.countDocuments();
+    res.status(200).json({ count });
+    console.log(count);
+  } catch (err) {
+    next(err);
+  }
+};

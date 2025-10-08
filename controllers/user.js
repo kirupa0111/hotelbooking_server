@@ -46,3 +46,17 @@ export const getUsers = async (req, res, next) => {
     next(err);
   }
 };
+
+// Add this route BEFORE /users/:id
+
+export const getUsersCount = async (req, res, next) => {
+  try {
+    // router.get("/count", async (req, res) => {
+    //   try {
+    const count = await User.countDocuments();
+    res.status(200).json({ count });
+    console.log(count);
+  } catch (err) {
+    next(err);
+  }
+};

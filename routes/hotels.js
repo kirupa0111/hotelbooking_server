@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getHotelCount,
   countByCity,
   countByType,
   createHotel,
@@ -14,6 +15,9 @@ import {
 import Hotel from "../models/Hotel.js";
 import { verifyAdmin, verifyToken } from "../utils/verifyToken.js";
 const router = express.Router();
+
+// get total hotel count
+router.get("/count", verifyAdmin, getHotelCount);
 
 //CREATE
 router.post("/", verifyAdmin, createHotel);
